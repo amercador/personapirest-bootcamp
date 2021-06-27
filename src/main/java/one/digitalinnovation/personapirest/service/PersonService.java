@@ -1,5 +1,6 @@
 package one.digitalinnovation.personapirest.service;
 
+import lombok.AllArgsConstructor;
 import one.digitalinnovation.personapirest.dto.request.PersonDTO;
 import one.digitalinnovation.personapirest.dto.response.MessageResponseDTO;
 import one.digitalinnovation.personapirest.entity.Person;
@@ -10,20 +11,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@AllArgsConstructor(onConstructor = @__(@Autowired)) //podemos remover o construtor
 public class PersonService {
 
     private PersonRepository personRepository;
 
     private final PersonMapper personMapper = PersonMapper.INSTANCE;
 
-    @Autowired
+   /* @Autowired
     public PersonService(PersonRepository personRepository) {
         this.personRepository = personRepository;
-    }
+    }*/
 
     public MessageResponseDTO createPerson(PersonDTO personDTO){
         Person personToSave = personMapper.toModel(personDTO);

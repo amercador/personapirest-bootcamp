@@ -1,5 +1,6 @@
 package one.digitalinnovation.personapirest.controller;
 
+import lombok.AllArgsConstructor;
 import one.digitalinnovation.personapirest.dto.request.PersonDTO;
 import one.digitalinnovation.personapirest.dto.response.MessageResponseDTO;
 import one.digitalinnovation.personapirest.exception.PersonNotFoundException;
@@ -13,14 +14,15 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/people")
+@AllArgsConstructor(onConstructor = @__(@Autowired)) //podemos remover o construtor
 public class PersonController {
 
     private PersonService personService;
 
-    @Autowired
+    /*@Autowired
     public PersonController(PersonService personService) {
         this.personService = personService;
-    }
+    }*/
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
