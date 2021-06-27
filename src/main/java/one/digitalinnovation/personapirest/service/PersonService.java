@@ -1,5 +1,6 @@
 package one.digitalinnovation.personapirest.service;
 
+import one.digitalinnovation.personapirest.dto.request.PersonDTO;
 import one.digitalinnovation.personapirest.dto.response.MessageResponseDTO;
 import one.digitalinnovation.personapirest.entity.Person;
 import one.digitalinnovation.personapirest.repository.PersonRepository;
@@ -16,8 +17,17 @@ public class PersonService {
         this.personRepository = personRepository;
     }
 
-    public MessageResponseDTO createPerson(Person person){
-        Person savedPerson = personRepository.save(person);
+    public MessageResponseDTO createPerson(PersonDTO personDTO){
+
+        Person personToSave = Person.builder()
+                .firstName(personDTO.getFirstName())
+                .lastName(personDTO.getLastName())
+                .birthDate(personDTO.getBirthDate())
+                .phones(personDTO.getPhones())
+                .build();
+
+
+        Person savedPerson = personRepository.save(personDTO);
         return MessageResponseDTO
                 .builder()
                 .message("Created person with ID " + savedPerson.getId())
